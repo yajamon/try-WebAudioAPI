@@ -1,0 +1,26 @@
+{
+  "name": "try-webauidoapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://yajamon@github.com/yajamon/try-WebAudioAPI.git"
+  },
+  "author": "yajamon <yajamon.tatsuki@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yajamon/try-WebAudioAPI/issues"
+  },
+  "homepage": "https://github.com/yajamon/try-WebAudioAPI#readme",
+  "private": true,
+  "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "eslint": "^3.11.1",
+    "eslint-config-google": "^0.7.1",
+    "typescript": "^2.0.10"
+  }
+}
