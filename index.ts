@@ -16,7 +16,7 @@ function hertzByMidiNoteNumber(noteNumber:number):number{
 function my01(){
     let ocr = audioCtx.createOscillator();
     ocr.type = OscillatorNodeType.Sine;
-    ocr.frequency.value = 440;
+    ocr.frequency.value = heltzByMidiNoteNumber(69);
     ocr.start(audioCtx.currentTime);
 
     let gain = audioCtx.createGain();
