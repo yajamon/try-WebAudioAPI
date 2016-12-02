@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "module": "es2015",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "target": "es6"
+    },
+    "files": [
+        "hello.ts",
+        "index.ts"
+    ]
+}
