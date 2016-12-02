@@ -9,6 +9,10 @@ namespace OscillatorNodeType {
     export const Custom = 'custom'
 }
 
+function hertzByMidiNoteNumber(noteNumber:number):number{
+    return (Math.pow(2, (noteNumber - 69)/12 ) ) * 440;
+}
+
 function my01(){
     let ocr = audioCtx.createOscillator();
     ocr.type = OscillatorNodeType.Sine;
