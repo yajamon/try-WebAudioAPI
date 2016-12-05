@@ -15,9 +15,11 @@ class AnalyserWrapper {
     }
 
     draw() {
-        const WIDTH = this.canvas.width;
-        const HEIGHT = this.canvas.height;
-        this.latestRequestAnimationId = requestAnimationFrame(this.draw);
+        const WIDTH = 300;
+        const HEIGHT = 150;
+        this.latestRequestAnimationId = requestAnimationFrame(()=>{
+            this.draw();
+        });
         this.analyser.getByteTimeDomainData(this.dataArray);
         this.context.fillStyle = 'rgb(200, 200, 200)';
         this.context.fillRect(0, 0, WIDTH, HEIGHT);
