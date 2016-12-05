@@ -58,6 +58,12 @@ function clear(){
         node.disconnect();
     });
     nodes = [];
+
+    analysers.forEach((wrapper)=>{
+        wrapper.analyser.disconnect();
+        wrapper.canvas.remove();
+    });
+    analysers = [];
 }
 
 window.addEventListener('load', function(){
