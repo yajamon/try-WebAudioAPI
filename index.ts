@@ -18,12 +18,12 @@ function my01(){
 }
 
 function my02(noteNumber:number){
-    let ocr = audioCtx.createOscillator();
+    const ocr = audioCtx.createOscillator();
     ocr.type = OscillatorNodeType.Sine;
     ocr.frequency.value = hertzByMidiNoteNumber(noteNumber);
     ocr.start(audioCtx.currentTime);
 
-    let gain = audioCtx.createGain();
+    const gain = audioCtx.createGain();
     gain.gain.value = 0.5;
 
     ocr.connect(gain);
