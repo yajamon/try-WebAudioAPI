@@ -1,5 +1,5 @@
 const audioCtx = new AudioContext();
-const nodes:AudioNode[] = [];
+let nodes:AudioNode[] = [];
 
 namespace OscillatorNodeType {
     export const Sine = 'sine'
@@ -39,5 +39,6 @@ function clear(){
             // node.stop()
         }
         node.disconnect();
-    })
+    });
+    nodes = [];
 }
