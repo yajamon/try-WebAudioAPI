@@ -42,3 +42,12 @@ function clear(){
     });
     nodes = [];
 }
+
+window.addEventListener('load', function(){
+    const doms = document.getElementsByClassName('clear');
+    for(let index=0; index<doms.length; ++index){
+        doms[index].addEventListener('click', function(){
+            clear();
+        });
+    }
+});
