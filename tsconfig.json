@@ -5,8 +5,7 @@
         "removeComments": true,
         "target": "es6"
     },
-    "files": [
-        "hello.ts",
-        "index.ts"
+    "include": [
+        "./**/*.ts"
     ]
 }
