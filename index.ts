@@ -1,5 +1,9 @@
+/// <reference path="./Model/AnalyserWrapper.ts" />
+
+
 const audioCtx = new AudioContext();
 let nodes:AudioNode[] = [];
+let analysers:AnalyserWrapper[] = [];
 
 namespace OscillatorNodeType {
     export const Sine = 'sine'
@@ -22,15 +26,28 @@ function my02(noteNumber:number){
     ocr.type = OscillatorNodeType.Sine;
     ocr.frequency.value = hertzByMidiNoteNumber(noteNumber);
     ocr.start(audioCtx.currentTime);
+    const ocrAnalyser = new AnalyserWrapper(audioCtx.createAnalyser());
 
     const gain = audioCtx.createGain();
     gain.gain.value = 0.5;
+    const gainAnalyser =  new AnalyserWrapper(audioCtx.createAnalyser());
 
-    ocr.connect(gain);
-    gain.connect(audioCtx.destination);
+    ocr.connect(ocrAnalyser.analyser);
+    ocrAnalyser.analyser.connect(gain);
+    gain.connect(gainAnalyser.analyser);
+    gainAnalyser.analyser.connect(audioCtx.destination);
 
     nodes.push(ocr);
     nodes.push(gain);
+
+    const analysersDom = document.getElementById('analysers');
+    analysersDom.appendChild(ocrAnalyser.canvas);
+    ocrAnalyser.draw();
+    analysersDom.appendChild(gainAnalyser.canvas);
+    gainAnalyser.draw();
+
+    analysers.push(ocrAnalyser);
+    analysers.push(gainAnalyser);
 }
 
 function clear(){
