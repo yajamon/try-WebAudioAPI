@@ -26,19 +26,18 @@ function my02(noteNumber:number){
     ocr.type = OscillatorNodeType.Sine;
     ocr.frequency.value = hertzByMidiNoteNumber(noteNumber);
     ocr.start(audioCtx.currentTime);
+    nodes.push(ocr);
     const ocrAnalyser = new AnalyserWrapper(audioCtx.createAnalyser());
 
     const gain = audioCtx.createGain();
     gain.gain.value = 0.5;
+    nodes.push(gain);
     const gainAnalyser =  new AnalyserWrapper(audioCtx.createAnalyser());
 
     ocr.connect(ocrAnalyser.analyser);
     ocrAnalyser.analyser.connect(gain);
     gain.connect(gainAnalyser.analyser);
     gainAnalyser.analyser.connect(audioCtx.destination);
-
-    nodes.push(ocr);
-    nodes.push(gain);
 
     analysers.push(ocrAnalyser);
     analysers.push(gainAnalyser);
