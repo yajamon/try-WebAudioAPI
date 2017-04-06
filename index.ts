@@ -40,14 +40,16 @@ function my02(noteNumber:number){
     nodes.push(ocr);
     nodes.push(gain);
 
-    const analysersDom = document.getElementById('analysers');
-    analysersDom.appendChild(ocrAnalyser.canvas);
-    ocrAnalyser.draw();
-    analysersDom.appendChild(gainAnalyser.canvas);
-    gainAnalyser.draw();
-
     analysers.push(ocrAnalyser);
     analysers.push(gainAnalyser);
+}
+
+function renderAnalysers(analysers:AnalyserWrapper[]){
+    const analysersDom = document.getElementById('analysers');
+    analysers.forEach(analyser =>{
+        analysersDom.appendChild(analyser.canvas);
+        analyser.draw();
+    });
 }
 
 function clear(){
