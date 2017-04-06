@@ -42,6 +42,8 @@ function my02(noteNumber:number){
 
     analysers.push(ocrAnalyser);
     analysers.push(gainAnalyser);
+
+    renderAnalysers(analysers);
 }
 
 function renderAnalysers(analysers:AnalyserWrapper[]){
