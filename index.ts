@@ -27,22 +27,27 @@ function my02(noteNumber:number){
     ocr.frequency.value = hertzByMidiNoteNumber(noteNumber);
     ocr.start(audioCtx.currentTime);
     nodes.push(ocr);
-    const ocrAnalyser = new AnalyserWrapper(audioCtx.createAnalyser());
 
     const gain = audioCtx.createGain();
     gain.gain.value = 0.5;
     nodes.push(gain);
-    const gainAnalyser =  new AnalyserWrapper(audioCtx.createAnalyser());
 
-    ocr.connect(ocrAnalyser.analyser);
-    ocrAnalyser.analyser.connect(gain);
-    gain.connect(gainAnalyser.analyser);
-    gainAnalyser.analyser.connect(audioCtx.destination);
+    joinAudioNodesWithAnalyserAndConnectDestination(nodes);
 
-    analysers.push(ocrAnalyser);
-    analysers.push(gainAnalyser);
-
+    // global気持ち悪い
     renderAnalysers(analysers);
+}
+
+function joinAudioNodesWithAnalyserAndConnectDestination(nodes:AudioNode[]){
+    nodes.map(node => {
+        const analyser = new AnalyserWrapper(audioCtx.createAnalyser());
+        node.connect(analyser.analyser);
+        analysers.push(analyser);
+        return {node: node, analyser: analyser};
+    }).reduce((prev, current) => {
+        prev.analyser.analyser.connect(current.node);
+        return current
+    }).analyser.analyser.connect(audioCtx.destination);
 }
 
 function renderAnalysers(analysers:AnalyserWrapper[]){
