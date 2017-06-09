@@ -38,6 +38,13 @@ function my02(noteNumber:number){
     renderAnalysers(analysers);
 }
 
+function joinSerialAudioNodes(nodes:AudioNode[]){
+    nodes.reduce((prev, current)=>{
+        prev.connect(current);
+        return current
+    }).connect(audioCtx.destination);
+}
+
 function joinAudioNodesWithAnalyserAndConnectDestination(nodes:AudioNode[]){
     nodes.map(node => {
         const analyser = new AnalyserWrapper(audioCtx.createAnalyser());
