@@ -45,6 +45,14 @@ function joinSerialAudioNodes(nodes:AudioNode[]){
     }).connect(audioCtx.destination);
 }
 
+function createAnalysers(nodes:AudioNode[]):AnalyserWrapper[]{
+    return nodes.map(node => {
+        const wrapper = new AnalyserWrapper(audioCtx.createAnalyser());
+        node.connect(wrapper.analyser);
+        return wrapper;
+    });
+}
+
 function joinAudioNodesWithAnalyserAndConnectDestination(nodes:AudioNode[]){
     nodes.map(node => {
         const analyser = new AnalyserWrapper(audioCtx.createAnalyser());
