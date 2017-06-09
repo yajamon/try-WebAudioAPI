@@ -32,7 +32,8 @@ function my02(noteNumber:number){
     gain.gain.value = 0.5;
     nodes.push(gain);
 
-    joinAudioNodesWithAnalyserAndConnectDestination(nodes);
+    joinSerialAudioNodes(nodes);
+    analysers = createAnalysers(nodes);
 
     // global気持ち悪い
     renderAnalysers(analysers);
