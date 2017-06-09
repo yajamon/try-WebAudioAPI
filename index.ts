@@ -54,18 +54,6 @@ function createAnalysers(nodes:AudioNode[]):AnalyserWrapper[]{
     });
 }
 
-function joinAudioNodesWithAnalyserAndConnectDestination(nodes:AudioNode[]){
-    nodes.map(node => {
-        const analyser = new AnalyserWrapper(audioCtx.createAnalyser());
-        node.connect(analyser.analyser);
-        analysers.push(analyser);
-        return {node: node, analyser: analyser};
-    }).reduce((prev, current) => {
-        prev.analyser.analyser.connect(current.node);
-        return current
-    }).analyser.analyser.connect(audioCtx.destination);
-}
-
 function renderAnalysers(analysers:AnalyserWrapper[]){
     const analysersDom = document.getElementById('analysers');
     analysers.forEach(analyser =>{
