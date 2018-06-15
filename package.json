@@ -19,9 +19,9 @@
   "homepage": "https://github.com/yajamon/try-WebAudioAPI#readme",
   "private": true,
   "devDependencies": {
-    "babel-eslint": "^7.1.1",
-    "eslint": "^3.11.1",
-    "eslint-config-google": "^0.7.1",
-    "typescript": "^2.0.10"
+    "babel-eslint": "^8.2.3",
+    "eslint": "^4.19.1",
+    "eslint-config-google": "^0.9.1",
+    "typescript": "^2.9.2"
   }
 }
